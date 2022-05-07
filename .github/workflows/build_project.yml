@@ -33,9 +33,10 @@ jobs:
     
     - name: build
       env:
+        VCVARS_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
         QT5_BIN: "${{ github.workspace }}/qtroot/Qt/5.15.2/msvc2019_64/bin"
       run: |
-      
+        call "${{ env.VCVARS_PATH }}"
         Write-Host "QT5_BIN = $Env:QT5_BIN"
 
         mkdir build
