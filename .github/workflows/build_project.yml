@@ -31,17 +31,17 @@ jobs:
         extra: '--external 7z'
       
     
-    - name: build
+    - name: build project
       env:
         VCVARS_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
         QT5_BIN: "${{ github.workspace }}/qtroot/Qt/5.15.2/msvc2019_64/bin"
+      shell: cmd
+      working-directory: build      
       run: |
         call "${{ env.VCVARS_PATH }}"
         Write-Host "QT5_BIN = $Env:QT5_BIN"
 
-        mkdir build
-        cd build
-        & "${{ env.QT5_BIN}}/qmake.exe" "..\src\FileCopy.pro"
+        "${{ env.QT5_BIN }}/qmake.exe" "..\src\FileCopy.pro"
         nmake
 
     - uses: actions/upload-artifact@v3
