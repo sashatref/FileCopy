@@ -19,7 +19,7 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
-        dir: '${{ github.workspace }}/example/'
+        dir: '${{ github.workspace }}/qtroot/'
         install-deps: 'true'
         cached: 'false'
         setup-python: 'true'
@@ -29,13 +29,15 @@ jobs:
         aqtversion: '==2.0.0'
         py7zrversion: '==0.16.1'
         extra: '--external 7z'
+      env:
+        QT5_BIN: "${{ github.workspace }}/qtroot/Qt/5.15.2/msvc2019_64/bin"
     
     - name: build
       run: |
       
-        Write-Host "Qt5Dir = $Env:Qt5_DIR"
-      
+        Write-Host "QT5_BIN = $Env:QT5_BIN"
+
         mkdir build
         cd build
-        $Env:GITHUB_WORKSPACE/example/Qt/5.15.2/msvc2019_64/bin/qmake ../src/FileCopy.pro
+        & "${{ env.QT5_BIN}}/qmake.exe" "..\src\FileCopy.pro"
         nmake
