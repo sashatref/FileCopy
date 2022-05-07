@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Build project
 
 on:
   push:
@@ -21,10 +21,9 @@ jobs:
         arch: 'win64_msvc2019_64'
         dir: '${{ github.workspace }}/example/'
         install-deps: 'true'
-        modules: 'qtcharts'
         cached: 'false'
         setup-python: 'true'
-        tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
+        tools: ''
         set-env: 'false'
         tools-only: 'false'
         aqtversion: '==2.0.0'
