@@ -1,0 +1,39 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'
+        dir: '${{ github.workspace }}/example/'
+        install-deps: 'true'
+        modules: 'qtcharts'
+        cached: 'false'
+        setup-python: 'true'
+        tools: 'tools_ifw tools_qtcreator,qt.tools.qtcreator'
+        set-env: 'false'
+        tools-only: 'false'
+        aqtversion: '==2.0.0'
+        py7zrversion: '==0.16.1'
+        extra: '--external 7z'
+    
+    - name: build
+      run: |
+        mkdir build
+        cd build
+        qmake ..\src\FileCopy.pro
+        nmake
