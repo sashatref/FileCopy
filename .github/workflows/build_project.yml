@@ -32,6 +32,11 @@ jobs:
     
     - name: build
       run: |
+      
+        Write-Host $Env:Qt5_DIR
+        cd $Env:GITHUB_WORKSPACE/example/Qt/5.15.2/msvc2019_64/bin
+        ls
+      
         mkdir build
         cd build
         qmake ..\src\FileCopy.pro
