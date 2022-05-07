@@ -29,10 +29,11 @@ jobs:
         aqtversion: '==2.0.0'
         py7zrversion: '==0.16.1'
         extra: '--external 7z'
-      env:
-        QT5_BIN: "${{ github.workspace }}/qtroot/Qt/5.15.2/msvc2019_64/bin"
+      
     
     - name: build
+      env:
+        QT5_BIN: "${{ github.workspace }}/qtroot/Qt/5.15.2/msvc2019_64/bin"
       run: |
       
         Write-Host "QT5_BIN = $Env:QT5_BIN"
@@ -41,3 +42,8 @@ jobs:
         cd build
         & "${{ env.QT5_BIN}}/qmake.exe" "..\src\FileCopy.pro"
         nmake
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: FileCopy
+        path: build/release/FileCopy.exe
