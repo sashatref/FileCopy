@@ -6,8 +6,8 @@ bool process(const QString &_inputDir, const QString &_outputDir, const QStringL
 {
     QDir fromDir(_inputDir);
 
-    const QSet<QString> excludeFileSet = _excludeFiles.toSet();
-    const QSet<QString> excludeDirSet = _excludeDirs.toSet();
+    const QSet<QString> excludeFileSet(_excludeFiles.begin(), _excludeFiles.end());
+    const QSet<QString> excludeDirSet(_excludeDirs.begin(), _excludeDirs.end());
 
     QDir emptyDir;
 

@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QCoreApplication>
-#include <QDebug>
-#include <QFile>
-#include <QFileInfo>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QDebug>
 #include <QDirIterator>
 #include <QElapsedTimer>
-#include <QDateTime>
+#include <QFile>
+#include <QFileInfo>
 #include <QRegExp>
